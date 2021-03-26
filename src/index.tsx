@@ -2,15 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import { createStore } from 'redux';
+
+export interface SimpleAction<T> {
+  type: string;
+  payload: T | null;
+}
+
+function reducer(state: number | null = null, action: SimpleAction<number>): number | null {
+  let newState = state ? state : 0;
+  switch (action.type) {
+    case "INCREMENT":
+      return newState + 1;
+    case "DECREMENT":
+      return newState - 1;
+    default:
+      return newState;
+  }
+}
+
+const store = createStore(reducer);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={configureStore()}>
+  <Provider store={store}>
       <App />
-    </Provider>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
