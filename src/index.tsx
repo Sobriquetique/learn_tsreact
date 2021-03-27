@@ -3,29 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
+import CounterReducer from './store/CounterReducer';
 
-export interface SimpleAction<T> {
-  type: string;
-  payload: T | null;
-}
 
-function reducer(state: number | null = null, action: SimpleAction<number>): number | null {
-  let newState = state ? state : 0;
-  switch (action.type) {
-    case "INCREMENT":
-      return newState + 1;
-    case "DECREMENT":
-      return newState - 1;
-    default:
-      return newState;
-  }
-}
-
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  CounterReducer,
+});
+const mystore = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={mystore}>
       <App />
   </Provider>,
   document.getElementById('root')

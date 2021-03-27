@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { DECREMENT_ACTION_TYPE, INCREMENT_ACTION_TYPE } from "./store/CounterReducer";
 
 function App() {
 
   const counter = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const increment = () => dispatch({type:"INCREMENT"});
-  const decrement = () => dispatch({type:"DECREMENT"});
+  const increment = () => dispatch({type: INCREMENT_ACTION_TYPE });
+  const decrement = () => dispatch({type: DECREMENT_ACTION_TYPE });
 
   return (
     <div className="wrapper">
