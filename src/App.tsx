@@ -1,15 +1,20 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import SimpleArticle from "./Article";
+import StyledArticle from "./styled/StyledArticle";
 import Counter from "./Counter";
+import StyledApp from "./styled/StyledApp";
+import Rating from "./Rating";
 
 function App() {
 
   return (
-    <SimpleArticle>
-      <Counter></Counter>
-    </SimpleArticle>
-    
+    <StyledApp>
+      <StyledArticle>
+        <Counter />
+      </StyledArticle>
+
+      <StyledArticle>
+        <Rating />
+      </StyledArticle>
+    </StyledApp>
   );
 }
 
