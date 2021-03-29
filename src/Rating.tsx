@@ -81,17 +81,20 @@ export default function Rating() {
         }
       </FlexRow>
       <FlexRow>
-        <RatingString props={state}/>
+        <RatingString {...state}/>
       </FlexRow>
     </StyledRating>
   );
 }
 
-const RatingString = (props: RatingState) => {
-  if (props.rawRating < 1) return null;
+function RatingString(props: RatingState) {
+  if (props.rawRating < 0) return null;
+
+  //rating which starts with 1
+  const rating = props.rawRating + 1;
   return (
     <span>
-
+      {"Current rating: " + rating + " star" + ((rating === 1) ? "" : "s")}
     </span>
   )
 }
